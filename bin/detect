@@ -2,4 +2,13 @@
 # bin/detect <build-dir>
 BUILD_DIR=$1
 cd $BUILD_DIR
-ls -U *.c > /dev/null 2>&1 && (echo "C") || exit 1
+
+echo "-----> Finding Makefile"
+
+if [ -f "Makefile" ]
+then
+  echo "-----> Makefile found"
+else
+  echo "-----> No Makefile found. Compilation cannot continue."
+  exit 1;
+fi

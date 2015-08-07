@@ -1,27 +1,24 @@
-# Heroku Buildpack: C
+# Heroku Buildpack: Make
 
-Use C-Buildpack if you need Heroku to execute a C application.
+Use this buildpack to run any code in a `heroku` Makefile target:
 
 ## Usage
 
-NOTE: The C app being deployed with this buildpack needs a makefile that will specify the build rules of the project.
+Add the `heroku` target to your Makefile:
 
-<br>$> heroku create myapp_name -s cedar
-<br>$> heroku config:add BUILDPACK_URL=https://github.com/atris/heroku-buildpack-C.git
+```Makefile
 
-# create your app, see test-app for an example
+heroku:
+  @echo 'Working ...'
 
-$> git push heroku master
+.PHONY: heroku
 
-<br>-----> Heroku receiving push
-<br>-----> Fetching custom git buildpack... done
-<br>-----> C app detected
-<br>-----> makefile found
-<br>gcc -o greesc1 greesc1.c
-<br>-----> Compilation done
-<br>-----> Discovering process types
-       <br>Procfile declares types -> (none)
-<br>-----> Compiled slug size: 4K
-<br>-----> Launching... done, v9
+```
 
+Then use [heroku-buildpack-multi](https://github.com/ddollar/heroku-buildpack-multi) to use the buildpack: 
 
+    $ heroku create myapp_name -s cedar
+    $ heroku buildpacks:set https://github.com/ddollar/heroku-buildpack-multi.git
+    $ echo "https://github.com/other-build-pack.git" >> .buildpacks
+    $ echo "https://github.com/kelonye/heroku-buildpack-make.git" >> .buildpacks
+    $ git push heroku master
