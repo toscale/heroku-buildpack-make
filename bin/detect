@@ -5,8 +5,6 @@ cd $BUILD_DIR
 
 echo "Make"
 
-if [ -f "Makefile" ]
-then
-else
+if [ ! -f "Makefile" ]; then
   exit 1;
 fi
