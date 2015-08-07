@@ -3,12 +3,10 @@
 BUILD_DIR=$1
 cd $BUILD_DIR
 
-echo "-----> Finding Makefile"
+echo "Make"
 
 if [ -f "Makefile" ]
 then
-  echo "-----> Makefile found"
 else
-  echo "-----> No Makefile found. Compilation cannot continue."
   exit 1;
 fi
