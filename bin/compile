@@ -8,6 +8,6 @@ LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
 cd $BUILD_DIR
 
-echo "-----> Running make heroku"
-make heroku
+echo "-----> Running make"
+make
 echo "-----> Done"
